@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Cockpit.css";
 
 function Cockpit(props) {
+  // useEffect rendering only when data changes
+
+  // useEffect(() => {
+  //   console.log("[cockpit.js useeffect]");
+  //   // http request
+  //   setTimeout(() => {
+  //     alert(" saved data to cloud");
+  //   }, 1000);
+  // }, [props.users]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      alert(" saved data to cloud cockpit");
+      console.log("[cockpit.js useeffect]");
+    }, 1000);
+    return () => {
+      clearTimeout(timer);
+      console.log("[cockpit.js clear time out useeffect]");
+    };
+  }, []);
   const classes = [];
 
   if (props.users.length === 1) {

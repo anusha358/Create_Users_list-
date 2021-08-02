@@ -5,6 +5,10 @@ import Radium, { StyleRoot } from "radium";
 import Cockpit from "../Components/Cockpit/Cockpit";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    console.log("[App.js] constructor");
+  }
   state = {
     users: [
       {
@@ -23,6 +27,25 @@ class App extends Component {
     otherState: " some other value",
     showUsers: false,
   };
+
+  static getDerivedStateFromProps(props, state) {
+    console.log("[App.js] getderived state from props", props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log("[App.js] component did mount");
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("[App.js.js] should component update");
+    return true;
+  }
+  componentDidUpdate() {
+    console.log("[App.js. componentDidUpdate]");
+  }
+  componentWillUnmount() {
+    console.log("[App.js] component will unmount");
+  }
 
   nameChangeHandler = (event, id) => {
     const userIndex = this.state.users.findIndex((user) => {
@@ -46,6 +69,7 @@ class App extends Component {
   };
 
   render() {
+    console.log("[App.js] render");
     const style = {
       backgroundColor: "green",
       color: "white",
